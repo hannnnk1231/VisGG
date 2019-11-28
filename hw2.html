@@ -42,7 +42,7 @@ var maketip = function (d) {
                return tip;}
                
 //define your year format here, first for the x scale, then if the date is displayed in tooltips
-var parseDate = d3.time.format("%y-%m").parse;
+var parseDate = d3.time.format("%m/%d/%y").parse;
 var formatDate = d3.time.format("%b %d, '%y");
 
 //create an SVG
@@ -72,7 +72,7 @@ var menu = d3.select("#menu select")
     .on("change", change);    
                 
 //suck in the data, store it in a value called formatted, run the redraw function
-d3.csv("https://raw.githubusercontent.com/hannnnk1231/VisGG/master/12345.csv", function(data) {
+d3.csv("https://raw.githubusercontent.com/hannnnk1231/VisGG/master/11.csv", function(data) {
                                     formatted = data;
                                     redraw();
                                   });
