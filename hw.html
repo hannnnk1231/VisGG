@@ -41,7 +41,7 @@ d3.csv("https://raw.githubusercontent.com/hannnnk1231/VisGG/master/123.csv", fun
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([0, d3.max(data, function(d) { return +d.diff; })])
+    .domain([0, d3.max(data, function(d) { return +d.dif; })])
     .range([ height, 0 ]);
   svg.append("g")
     .call(d3.axisLeft(y));
@@ -63,7 +63,7 @@ d3.csv("https://raw.githubusercontent.com/hannnnk1231/VisGG/master/123.csv", fun
         .attr("d", function(d){
           return d3.line()
             .x(function(d) { return x(d.date); })
-            .y(function(d) { return y(+d.diff); })
+            .y(function(d) { return y(+d.dif); })
             (d.values)
         })
 
