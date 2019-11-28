@@ -15,7 +15,7 @@ var margin = {top: 10, right: 30, bottom: 30, left: 60},
     height = 400 - margin.top - margin.bottom;
 
 // append the svg object to the body of the page
-var svg = d3.select("body")
+var svg = d3.select("#my_dataviz")
   .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
@@ -24,16 +24,16 @@ var svg = d3.select("body")
           "translate(" + margin.left + "," + margin.top + ")");
 
 //Read the data
-d3.csv("https://e3new.nctu.edu.tw/pluginfile.php/535499/mod_folder/content/0/%E7%B8%A3%E5%B8%82%E4%BA%BA%E5%8F%A3%E7%B5%B1%E8%A8%88.csv", function(data) {
-	console.log(d)
+d3.csv("https://raw.githubusercontent.com/hannnnk1231/VisGG/master/123.csv", function(data) {
+
   // group the data: I want to draw one line per group
   var sumstat = d3.nest() // nest function allows to group the calculation per level of a factor
-    .key(function(d) { return d.縣市;})
+    .key(function(d) { return d.name;})
     .entries(data);
 
   // Add X axis --> it is a date format
   var x = d3.scaleLinear()
-    .domain(d3.extent(data, function(d) { return d.Date; }))
+    .domain(d3.extent(data, function(d) { return d.year; }))
     .range([ 0, width ]);
   svg.append("g")
     .attr("transform", "translate(0," + height + ")")
@@ -41,13 +41,13 @@ d3.csv("https://e3new.nctu.edu.tw/pluginfile.php/535499/mod_folder/content/0/%E7
 
   // Add Y axis
   var y = d3.scaleLinear()
-    .domain([0, d3.max(data, function(d) { return +d.人口差; })])
+    .domain([0, d3.max(data, function(d) { return +d.n; })])
     .range([ height, 0 ]);
   svg.append("g")
     .call(d3.axisLeft(y));
 
   // color palette
-  var res = sumstat.map(function(d){ return d.key}) // list of group names
+  var res = sumstat.map(function(d){ return d.key }) // list of group names
   var color = d3.scaleOrdinal()
     .domain(res)
     .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf','#999999'])
@@ -62,8 +62,8 @@ d3.csv("https://e3new.nctu.edu.tw/pluginfile.php/535499/mod_folder/content/0/%E7
         .attr("stroke-width", 1.5)
         .attr("d", function(d){
           return d3.line()
-            .x(function(d) { return x(d.Date); })
-            .y(function(d) { return y(+d.人口差); })
+            .x(function(d) { return x(d.year); })
+            .y(function(d) { return y(+d.n); })
             (d.values)
         })
 
