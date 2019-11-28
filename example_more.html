@@ -1,5 +1,6 @@
 <html>
 <script src="https://d3js.org/d3.v4.min.js"></script>
+
 <body>
 </body>
 </html>
@@ -12,7 +13,7 @@ var svg = d3.select("body")
     .attr("width", "600px")
     .attr("height", "400px");
 
-d3.csv("https://raw.githubusercontent.com/hannnnk1231/VisGG/master/123.csv",
+d3.csv("https://raw.githubusercontent.com/holtzy/data_to_viz/master/Example_dataset/2_TwoNum.csv",
 	// data manipulation (convert string to int)
 	function(data){
 	data.forEach(function(d){
@@ -97,7 +98,7 @@ d3.csv("https://raw.githubusercontent.com/hannnnk1231/VisGG/master/123.csv",
 		      	.duration(200+Math.random()*1000)
 		        .ease(d3.easePolyOut)
 		        	.attr("r", 1.5)
-					.attr("opacity", 1)
+					.attr("opacity", 1);
 
 
 		// zooming
