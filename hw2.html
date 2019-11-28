@@ -28,7 +28,7 @@ d3.select('#headline')
 var NumbType = d3.format(".2f");
 
 // color array
-var bluescale4 = ["#8BA9D0", "#6A90C1", "#066CA9", "#004B8C"];
+var bluescale4 = ['#FCCDCD','#F9A0A0','#EA5454','#FCDACD','#BA3030','#BA5E30','#FCF9CD','#DB7441','#F0AF8E','#bD6CDFC','#F0DD8E','#E8CB52','#B0931D','#A5B01D','#FF1207','#13a4ff','#2345ea','#DCFCCD','#ff7f00','#CDE2FC','#a65628','#f781bf','#999999','#e41a1c','#EBCDFC'];
 
 //color function pulls from array of colors stored in color.js
 var color = d3.scale.ordinal().range(bluescale4);
@@ -127,8 +127,8 @@ function redraw() {
 
     var y = d3.scale.linear()
         .domain([
-        d3.min(linedata, function(c) { return d3.min(c.values, function(v) { return v.value; }); }),
-        d3.max(linedata, function(c) { return d3.max(c.values, function(v) { return v.value; }); })
+        d3.min(linedata, function(c) { return d3.min(c.values, function(v) { return v.value; }); })-2000,
+        d3.max(linedata, function(c) { return d3.max(c.values, function(v) { return v.value; }); })+2000
         ])
         .range([height, 0]);
 
@@ -284,7 +284,7 @@ function redraw() {
     //create a scale to pass the legend items through
     var legendscale= d3.scale.ordinal()
                 .domain(lastvalues)
-                .range([0,20,40,60,80,100,120,140,160,180,200,220,240,260,280,300,320,340,360,400]);
+                .range([0,20,40,60,80,100,120,140,160,180,200,220,240,260,280,300,320,340,360,380,400,420,440,460,480]);
 
     //actually add the circles to the created legend container
     legendEnter.append('circle')
